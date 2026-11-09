@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,128 @@
     <title>Bolívar Eco-Calculator</title>
 </head>
 <body>
+
     <h1>Bolívar Eco-Calculator</h1>
+
+    <h2>Calculadora de impacto ambiental</h2>
+
+    <form id="ecoForm">
+
+        <label for="transporte">Medio de transporte al colegio:</label>
+        <select id="transporte" required>
+            <option value="">Selecciona una opción</option>
+            <option value="bus">Bus</option>
+            <option value="carro">Carro privado</option>
+            <option value="compartido">Carro compartido</option>
+            <option value="sostenible">Bicicleta/Caminando</option>
+        </select>
+
+        <br><br>
+
+        <label for="papel">Hojas de papel utilizadas al día:</label>
+        <input type="number" id="papel" min="0" step="1" required>
+
+        <br><br>
+
+        <label for="reciclaje">Nivel de reciclaje:</label>
+        <select id="reciclaje" required>
+            <option value="">Selecciona una opción</option>
+            <option value="bajo">Bajo</option>
+            <option value="medio">Medio</option>
+            <option value="alto">Alto</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Calcular impacto ambiental</button>
+
+    </form>
+
+    <h2>Resultados</h2>
+
+    <p id="co2Resultado">Emisiones semanales de CO2: -- kg</p>
+    <p id="ecoResultado">Eco-Points: -- puntos</p>
+
+    <script>
+        const formulario = document.getElementById("ecoForm");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Obtener los datos del formulario
+            const transporte = document.getElementById("transporte").value;
+            const papel = Number(document.getElementById("papel").value);
+            const reciclaje = document.getElementById("reciclaje").value;
+
+            // Validar los datos ingresados
+            if (
+                transporte === "" ||
+                reciclaje === "" ||
+                document.getElementById("papel").value === "" ||
+                !Number.isInteger(papel) ||
+                papel < 0
+            ) {
+                alert("Por favor, completa todos los campos con datos válidos.");
+                return;
+            }
+
+            // Factores estimados de CO2 por día de transporte (kg)
+            const emisionesTransporte = {
+                bus: 1.2,
+                carro: 4.6,
+                compartido: 2.3,
+                sostenible: 0
+            };
+
+            // Factor estimado de CO2 por hoja de papel (kg)
+            const emisionesPorHoja = 0.005;
+
+            // Calcular emisiones semanales de transporte y papel
+            const co2Transporte = emisionesTransporte[transporte] * 5;
+            const co2Papel = papel * emisionesPorHoja * 5;
+
+            // Reducción estimada según el nivel de reciclaje
+            const reduccionReciclaje = {
+                bajo: 0,
+                medio: 0.10,
+                alto: 0.20
+            };
+
+            const co2Total = (co2Transporte + co2Papel) *
+                (1 - reduccionReciclaje[reciclaje]);
+
+            // Calcular Eco-Points
+            let ecoPoints = 100;
+
+            const puntosTransporte = {
+                bus: 20,
+                carro: 0,
+                compartido: 10,
+                sostenible: 40
+            };
+
+            const puntosReciclaje = {
+                bajo: 0,
+                medio: 20,
+                alto: 40
+            };
+
+            const puntosPapel = Math.max(0, 30 - papel);
+
+            ecoPoints =
+                puntosTransporte[transporte] +
+                puntosReciclaje[reciclaje] +
+                puntosPapel;
+
+            // Mostrar resultados
+            document.getElementById("co2Resultado").textContent =
+                "Emisiones semanales de CO2: " +
+                co2Total.toFixed(2) + " kg";
+
+            document.getElementById("ecoResultado").textContent =
+                "Eco-Points: " + ecoPoints + " puntos";
+        });
+    </script>
+
 </body>
 </html>

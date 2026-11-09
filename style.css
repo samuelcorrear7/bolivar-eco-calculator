@@ -1,0 +1,277 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 30px 15px;
+    background-color: #f0f7f1;
+    color: #234333;
+}
+
+.container {
+    max-width: 650px;
+    margin: 30px auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.language-selector {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.language-selector select {
+    width: auto;
+    padding: 9px 12px;
+    border: 1px solid #cbded1;
+    border-radius: 8px;
+    background-color: white;
+    color: #234333;
+    cursor: pointer;
+}
+
+header h1 {
+    color: #087f5b;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #648071;
+    font-size: 15px;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 15px rgba(25, 90, 60, 0.08);
+}
+
+.card h2 {
+    color: #087f5b;
+    font-size: 21px;
+    margin-top: 0;
+    margin-bottom: 22px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 9px;
+    color: #315b46;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbded1;
+    border-radius: 9px;
+    background-color: #f9fcf9;
+    font-size: 15px;
+    color: #234333;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #10a574;
+    box-shadow: 0 0 0 3px rgba(16, 165, 116, 0.12);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #087f5b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #056644;
+}
+
+button:disabled {
+    background-color: #a5b8ad;
+    cursor: not-allowed;
+}
+
+.print-button {
+    background-color: #315b46;
+    margin-top: 15px;
+}
+
+.print-button:hover {
+    background-color: #234333;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.result-box {
+    padding: 22px 15px;
+    border-radius: 13px;
+    background-color: #e8f6ed;
+    text-align: center;
+}
+
+.result-box h3 {
+    font-size: 14px;
+    color: #527661;
+    margin: 0 0 12px;
+}
+
+.result-box p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #087f5b;
+    margin: 0;
+}
+
+.result-description {
+    font-size: 12px;
+    color: #648071;
+    margin-top: 8px;
+}
+
+footer {
+    text-align: center;
+    color: #819b8a;
+    font-size: 12px;
+    margin-top: 25px;
+}
+
+/* Certificado */
+
+#certificate {
+    display: none;
+}
+
+/* Diseño adaptable */
+
+@media (max-width: 480px) {
+
+    .results {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+}
+
+/* Formato de impresión y PDF */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+        color: #234333;
+    }
+
+    .container {
+        display: none !important;
+    }
+
+    #certificate {
+        display: block !important;
+        width: 100%;
+        padding: 35px;
+        border: 4px double #087f5b;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .certificate-logo {
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    .certificate-title {
+        font-size: 30px;
+        color: #087f5b;
+        margin-bottom: 8px;
+    }
+
+    .certificate-subtitle {
+        font-size: 15px;
+        color: #648071;
+        margin-bottom: 35px;
+    }
+
+    .certificate-message {
+        font-size: 17px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .certificate-results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .certificate-result {
+        border: 1px solid #b5d6c0;
+        border-radius: 10px;
+        padding: 20px 10px;
+    }
+
+    .certificate-result h3 {
+        color: #527661;
+        font-size: 14px;
+    }
+
+    .certificate-result p {
+        color: #087f5b;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .certificate-details {
+        text-align: left;
+        margin: 30px 0;
+        line-height: 2;
+        font-size: 14px;
+    }
+
+    .certificate-footer {
+        border-top: 1px solid #b5d6c0;
+        padding-top: 20px;
+        margin-top: 35px;
+        font-size: 12px;
+        color: #648071;
+    }
+}
